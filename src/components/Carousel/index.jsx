@@ -1,8 +1,11 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
+import getAllCategories from "@/lib/getAllCategories";
+
 import CarouselItem from "./CarouselItem";
 
-export default function Carousel({ t, items, queryParams }) {
+export default function Carousel({ t, queryParams }) {
+  const items = getAllCategories(t);
   const nextItem = () => {
     let lists = document.querySelectorAll(".item");
     document.getElementById("slide").appendChild(lists[0]);

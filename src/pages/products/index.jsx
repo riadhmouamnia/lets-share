@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { withTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect, useState } from "react";
 
 import { fetchCollection } from "@/lib/fetchCollection";
-import getAllCategories from "@/lib/getAllCategories";
 
 import Carousel from "@/components/Carousel";
 import ProductCard from "@/components/ProductCard";
@@ -14,19 +12,13 @@ import SliderRow from "@/components/ProductFiltering/SliderRow";
 import SearchBar from "@/components/SearchBar";
 
 function ProductsPage({ t, items, queryParams }) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  const categories = getAllCategories(t);
   return (
     <main className='mb-10'>
       {/* This is Categories Section */}
       <div className='relative md:h-[75vh] h-[80vh] overflow-x-hidden w-full'>
-        <Carousel t={t} items={categories} queryParams={queryParams} />
+        <Carousel t={t} queryParams={queryParams} />
       </div>
-      <SliderRow categories={categories} title={t("productsPage:all")} />
+      <SliderRow title={t("productsPage:all")} t={t} />
       {/* This is for Searchbar & Product Filtering */}
       <div className='flex flex-col md:flex-row gap-4 justify-between items-center px-10 mt-16'>
         <SearchBar t={t} queryParams={queryParams} />

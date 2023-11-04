@@ -15,9 +15,11 @@ it("renders correctly", () => {
   ];
   const queryParams = {};
   const title = "title";
+  const mockT = jest.fn();
   const tree = renderer
     .create(
       <SliderRow
+        t={mockT}
         title={title}
         categories={mockItems}
         rowID={1}

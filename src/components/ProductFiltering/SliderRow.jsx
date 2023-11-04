@@ -1,8 +1,11 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
+import getAllCategories from "@/lib/getAllCategories";
+
 import CategoryCard from "./CategoryCard";
 
-function SliderRow({ title, categories, rowID, queryParams }) {
+function SliderRow({ t, title, rowID, queryParams }) {
+  const categories = getAllCategories(t);
   const slideLeft = () => {
     const slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft - 600;
