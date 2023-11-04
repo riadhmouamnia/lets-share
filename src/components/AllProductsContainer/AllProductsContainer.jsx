@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import getAllCategories from "@/lib/getAllCategories";
-
 import ProductCard from "../ProductCard";
 import ClearFilterButton from "../ProductFiltering/ClearFilterButton";
 import LocationFilter from "../ProductFiltering/LocationFilter";
@@ -11,7 +9,7 @@ import SearchBar from "../SearchBar";
 
 function AllProductsContainer({ items, queryParams }) {
   const { t } = useTranslation();
-  const categories = getAllCategories(t);
+  // const categories = getAllCategories(t);
   return (
     <div>
       {/* This is Categories Section */}
