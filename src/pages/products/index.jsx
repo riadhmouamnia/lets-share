@@ -5,9 +5,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchCollection } from "@/lib/fetchCollection";
 
 import ProductCard from "@/components/ProductCard";
-import ClearFilterButton from "@/components/ProductFiltering/ClearFilterButton";
-import LocationFilter from "@/components/ProductFiltering/LocationFilter";
-import SearchBar from "@/components/SearchBar";
 
 function ProductsPage({ t, items, queryParams }) {
   return (
@@ -18,7 +15,7 @@ function ProductsPage({ t, items, queryParams }) {
       </div> */}
       {/* <SliderRow title={t("productsPage:all")} t={t} /> */}
       {/* This is for Searchbar & Product Filtering */}
-      <div className='flex flex-col md:flex-row gap-4 justify-between items-center px-10 mt-16'>
+      {/* <div className='flex flex-col md:flex-row gap-4 justify-between items-center px-10 mt-16'>
         <SearchBar t={t} queryParams={queryParams} />
         <LocationFilter t={t} queryParams={queryParams} />
         <Link
@@ -28,7 +25,7 @@ function ProductsPage({ t, items, queryParams }) {
           {t("common:buttons:addItem")}
         </Link>
         <ClearFilterButton t={t} />
-      </div>
+      </div> */}
       {/* Section for Product Cards */}
       <h1
         className='text-2xl w-full font-semibold text-center my-16'
