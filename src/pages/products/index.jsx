@@ -1,3 +1,5 @@
+import { withTranslation } from "next-i18next";
+
 import { fetchCollection } from "@/lib/fetchCollection";
 
 import AllProductsContainer from "@/components/AllProductsContainer/AllProductsContainer";
@@ -10,7 +12,13 @@ function ProductsPage({ items, queryParams }) {
   );
 }
 
-export default ProductsPage;
+export default withTranslation([
+  "common",
+  "productsPage",
+  "states",
+  "categories",
+  "addItem",
+])(ProductsPage);
 
 export async function getServerSideProps({ query }) {
   const queryParams = query;
