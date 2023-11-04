@@ -1,12 +1,7 @@
-import Link from "next/link";
 import { withTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { fetchCollection } from "@/lib/fetchCollection";
-
-import ProductCard from "@/components/ProductCard";
-
-function ProductsPage({ t, items, queryParams }) {
+function ProductsPage({ t }) {
   return (
     <main className='mb-10'>
       {/* This is Categories Section */}
@@ -33,7 +28,7 @@ function ProductsPage({ t, items, queryParams }) {
       >
         {t("productsPage:productsList")}
       </h1>
-      <div className='flex flex-wrap gap-4 items-center justify-center w-full'>
+      {/* <div className='flex flex-wrap gap-4 items-center justify-center w-full'>
         {items.map((item) => (
           <Link
             key={item.id}
@@ -50,16 +45,16 @@ function ProductsPage({ t, items, queryParams }) {
             />
           </Link>
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }
 
 export default withTranslation("ProductsPage")(ProductsPage);
 
-export async function getServerSideProps({ locale, query }) {
-  const queryParams = query;
-  const items = await fetchCollection("items", queryParams);
+export async function getServerSideProps({ locale }) {
+  // const queryParams = query;
+  // const items = await fetchCollection("items", queryParams);
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -69,8 +64,6 @@ export async function getServerSideProps({ locale, query }) {
         "categories",
         "addItem",
       ])),
-      items,
-      queryParams,
     },
   };
 }
