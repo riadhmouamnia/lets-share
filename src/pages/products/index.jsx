@@ -52,7 +52,7 @@ function ProductsPage({ t }) {
 
 export default withTranslation("ProductsPage")(ProductsPage);
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   // const queryParams = query;
   // const items = await fetchCollection("items", queryParams);
   return {
