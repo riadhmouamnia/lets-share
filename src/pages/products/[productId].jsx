@@ -40,13 +40,16 @@ function ProductDetails({ t, product, userInfo, relatedProducts }) {
 }
 export default withTranslation("ProductDetails")(ProductDetails);
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const products = await fetchCollection("items");
   const paths = [];
 
   products.forEach((product) => {
-    paths.push({
-      params: { productId: product.id.toString() },
+    locales.forEach((locale) => {
+      paths.push({
+        params: { productId: product.id.toString() },
+        locale: locale,
+      });
     });
   });
   return {

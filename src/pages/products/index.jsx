@@ -4,21 +4,19 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { fetchCollection } from "@/lib/fetchCollection";
 
-import Carousel from "@/components/Carousel";
 import ProductCard from "@/components/ProductCard";
 import ClearFilterButton from "@/components/ProductFiltering/ClearFilterButton";
 import LocationFilter from "@/components/ProductFiltering/LocationFilter";
-import SliderRow from "@/components/ProductFiltering/SliderRow";
 import SearchBar from "@/components/SearchBar";
 
 function ProductsPage({ t, items, queryParams }) {
   return (
     <main className='mb-10'>
       {/* This is Categories Section */}
-      <div className='relative md:h-[75vh] h-[80vh] overflow-x-hidden w-full'>
+      {/* <div className='relative md:h-[75vh] h-[80vh] overflow-x-hidden w-full'>
         <Carousel t={t} queryParams={queryParams} />
-      </div>
-      <SliderRow title={t("productsPage:all")} t={t} />
+      </div> */}
+      {/* <SliderRow title={t("productsPage:all")} t={t} /> */}
       {/* This is for Searchbar & Product Filtering */}
       <div className='flex flex-col md:flex-row gap-4 justify-between items-center px-10 mt-16'>
         <SearchBar t={t} queryParams={queryParams} />
