@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { withTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useEffect, useState } from "react";
 
 import { fetchCollection } from "@/lib/fetchCollection";
 import getAllCategories from "@/lib/getAllCategories";
@@ -13,6 +14,11 @@ import SliderRow from "@/components/ProductFiltering/SliderRow";
 import SearchBar from "@/components/SearchBar";
 
 function ProductsPage({ t, items, queryParams }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const categories = getAllCategories(t);
   return (
     <main className='mb-10'>
