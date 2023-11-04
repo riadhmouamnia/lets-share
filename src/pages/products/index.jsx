@@ -1,4 +1,4 @@
-import { withTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { fetchCollection } from "@/lib/fetchCollection";
 
@@ -12,26 +12,20 @@ function ProductsPage({ items, queryParams }) {
   );
 }
 
-export default withTranslation([
-  "common",
-  "productsPage",
-  "states",
-  "categories",
-  "addItem",
-])(ProductsPage);
+export default ProductsPage;
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, locale }) {
   const queryParams = query;
   const items = await fetchCollection("items", queryParams);
   return {
     props: {
-      // ...(await serverSideTranslations(locale, [
-      //   "common",
-      //   "states",
-      //   "productsPage",
-      //   "categories",
-      //   "addItem",
-      // ])),
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "states",
+        "productsPage",
+        "categories",
+        "addItem",
+      ])),
       items,
       queryParams,
     },

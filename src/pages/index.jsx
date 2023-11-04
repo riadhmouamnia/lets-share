@@ -7,7 +7,7 @@ import OurPartnersSection from "@/components/LandingPage/OurPartnersSection";
 import PopularItemsSection from "@/components/LandingPage/PopularItemsSection";
 import StatisticsSection from "@/components/LandingPage/StatisticsSection";
 
-export default function HomePage(props) {
+function HomePage(props) {
   const { initialLocale } = props._nextI18Next;
 
   return (
@@ -22,6 +22,8 @@ export default function HomePage(props) {
     </main>
   );
 }
+
+export default HomePage;
 
 export async function getStaticProps({ locale }) {
   return {
