@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { withTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import profile from "public/images/profile.svg";
 import { IoCalendarOutline } from "react-icons/io5";
 
 import { fetchCollection } from "@/lib/fetchCollection";
@@ -31,13 +32,13 @@ function BlogDetails({ blog, user, t, locale }) {
                 className='w-full h-full rounded-full'
                 width={100}
                 height={100}
-                src={user.photoURL}
-                alt={user.name}
+                src={user?.photoURL || profile}
+                alt={user?.name || "unknown"}
               />
             </div>
           </div>
           <span className='text-slate-600 text-sm'>
-            By: <span className='link'>{user.name}</span>
+            By: <span className='link'>{user?.name || "unknown"}</span>
           </span>
           <span className='text-slate-600 text-sm flex gap-2 items-center'>
             <IoCalendarOutline className='text-lg' />
