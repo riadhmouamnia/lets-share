@@ -1,6 +1,7 @@
 import { serverTimestamp } from "firebase/firestore";
-export const blogs = [
+export const blogsData = [
   {
+    blogKey: "eidElFitrBlog",
     id: 1,
     title: "The Spirit of Giving: Eid al-Fitr Donations",
     description:
@@ -36,8 +37,8 @@ export const blogs = [
     ],
     uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",
   },
-
   {
+    blogKey: "donationInRamadan",
     id: 2,
     title: "Donations in Ramadan: A Time for Giving and Compassion",
     description:
@@ -80,6 +81,7 @@ export const blogs = [
     uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",
   },
   {
+    blogKey: "donationsInGaza",
     id: 3,
     title: "Donations in Gaza: Supporting Those in Need",
     description:
@@ -116,6 +118,7 @@ export const blogs = [
     uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",
   },
   {
+    blogKey: "isolatedAreasDonations",
     id: 4,
     title: "Donations in Isolated Areas: Bringing Hope to the Underserved",
     description:
@@ -152,6 +155,7 @@ export const blogs = [
     uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",
   },
   {
+    blogKey: "donationsInEidalAdha",
     id: 5,
     title: "Donations in Eid al-Adha: The Festival of Sacrifice and Charity",
     description:
@@ -189,6 +193,44 @@ export const blogs = [
         subTitle: "Strengthening Community Bonds",
         description:
           "Eid al-Adha fosters a sense of community and solidarity. The act of giving and sharing during this holiday strengthens the bonds of brotherhood and sisterhood within the Muslim community. It reminds us that we are all responsible for one another's well-being, and through acts of charity, we can make a positive impact on society.",
+      },
+    ],
+    uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",
+  },
+  {
+    blogKey: "donationsOfMedicalEquipments",
+    id: 6,
+    title:
+      "Access to quality healthcare is a fundamental right. Donations of medical equipment play a crucial role as a lifeline for healthcare facilities, ensuring critical care and saving lives.",
+    description:
+      "Eid al-Adha, also known as the 'Festival of Sacrifice,' is one of the most significant Islamic holidays celebrated by Muslims around the world. It commemorates the willingness of Prophet Ibrahim (Abraham) to sacrifice his son as an act of obedience to God. Beyond the symbolic rituals and feasting, Eid al-Adha emphasizes the values of sacrifice and charity.",
+    createdAt: serverTimestamp(),
+    imageUrl:
+      "https://images.unsplash.com/photo-1514845505178-849cebf1a91d?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    content: [
+      {
+        id: 1,
+        subTitle: "Vital Role of Healthcare Services",
+        description:
+          "Access to healthcare services is crucial for maintaining health and well-being. Donations of medical equipment support the essential work of healthcare professionals and ensure communities' access to vital treatments and life-saving care.",
+      },
+      {
+        id: 2,
+        subTitle: "Supply of Critical Medical Equipment",
+        description:
+          "Donations of medical equipment include items such as ventilators, surgical instruments, personal protective equipment (PPE), medications, and much more. These materials are essential for the diagnosis, treatment, and care of patients.",
+      },
+      {
+        id: 3,
+        subTitle: "Supporting Health Equity",
+        description:
+          "Donations of medical equipment promote health equity by ensuring access to necessary medical resources, regardless of economic or geographic status. This contributes to reducing health inequalities and improving health outcomes.",
+      },
+      {
+        id: 4,
+        subTitle: "Saving Lives and Improving Health",
+        description:
+          "By making donations of medical equipment, you play a crucial role in saving lives and improving the health of individuals and communities. Your support offers a chance for hope, healing, and a healthier future.",
       },
     ],
     uid: "u7GMNKFttNPMIhBXYRxxYof86ER2",

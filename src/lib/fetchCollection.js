@@ -1,12 +1,13 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 import { db } from "./firebase";
 // Function to fetch data from Firestore
 export async function fetchCollection(collectionName, queryParams = {}) {
   const collectionRef = collection(db, collectionName);
+  const q = query(collectionRef, orderBy("createdAt", "desc"));
 
   try {
-    const querySnapshot = await getDocs(collectionRef);
+    const querySnapshot = await getDocs(q);
 
     const data = [];
     querySnapshot.forEach((doc) => {
@@ -42,6 +43,6 @@ export async function fetchCollection(collectionName, queryParams = {}) {
     return filteredData;
   } catch (error) {
     // Instead of returning an error object, you can log the error and return an empty array.
-    return [];
+    return { items: [], totalPages: 0, totalItems: 0 };
   }
 }

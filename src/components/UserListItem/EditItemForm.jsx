@@ -8,11 +8,13 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 import { db } from "@/lib/firebase";
+import getAllCategories from "@/lib/getAllCategories";
 import getAllStates from "@/lib/getAllStates";
 import useUpdateItemImage from "@/lib/useUpdateItemImage";
 
 import Input from "../Input";
 import SelectInput from "../SelectInput";
+import TextAreaInput from "../TextAreaInput";
 import ImageSpinner from "../UserProfile/ImageSpinner";
 
 function EditItemForm({ item, onEdit }) {
@@ -22,8 +24,9 @@ function EditItemForm({ item, onEdit }) {
   );
 
   const { updateImage } = useUpdateItemImage();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const states = getAllStates(t);
+  const categories = getAllCategories(t);
 
   const formik = useFormik({
     initialValues: {
@@ -33,19 +36,18 @@ function EditItemForm({ item, onEdit }) {
       location: item.location,
     },
     validationSchema: Yup.object({
-      title: Yup.string()
-        .max(20, "Title must be less than 20 characters")
-        .required("Title is required"),
+      title: Yup.string().required(t("addItem:titleRequired")),
       description: Yup.string()
-        .max(50, "Description must be less than 50 characters")
-        .required("Description is required"),
-      category: Yup.string().required("Category is required"),
-      location: Yup.string().required("Location is required"),
+        .max(250, "description too long")
+        .required(t("addItem:descriptionRequired")),
+      category: Yup.string().required(t("addItem:categoryRequired")),
+      location: Yup.string().required(t("addItem:locationRequired")),
     }),
     onSubmit: async (values) => {
       const itemDocRef = doc(db, "items", item.id);
       const updatedItem = {
         ...values,
+        title: values.title.toLowerCase(),
         images: selectedImages,
         updated: serverTimestamp(),
       };
@@ -69,7 +71,7 @@ function EditItemForm({ item, onEdit }) {
           autoClose: 1500,
         });
       } finally {
-        document.getElementById(item.id).close();
+        document.getElementById(`my_modal_${item.id}`).close();
       }
     },
   });
@@ -88,17 +90,26 @@ function EditItemForm({ item, onEdit }) {
   };
 
   return (
-    <dialog id={item.id} className='modal'>
-      <div className='modal-box'>
-        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
-          <h1 className='text-3xl font-black text-center'>
-            Update your personal profile
+    <dialog
+      id={`my_modal_${item.id}`}
+      className='modal cursor-default bg-black bg-opacity-40'
+    >
+      <div
+        dir={i18n.language == "ar" ? "rtl" : "ltr"}
+        className='md:max-w-xl w-[90%] z-50 h-[90%]  transition-all duration-500 ease-in-out overflow-y-scroll no-scrollbar bg-base-100 rounded-2xl p-8'
+      >
+        <form
+          onSubmit={formik.handleSubmit}
+          className='flex w-full flex-col gap-3'
+        >
+          <h1 className='text-xl font-bold text-center'>
+            {t("dashboard:editItemForm:updateItem")}
           </h1>
           <div className='flex justify-evenly gap-4 items-center'>
             {item.images.map((image, index) => (
               <figure key={index} className='relative group'>
                 {imageLoading[index] && (
-                  <ImageSpinner classes='absolute bg-white rounded-lg w-full h-full top-0 bg-opacity-30 flex items-center justify-center' />
+                  <ImageSpinner classes='absolute bg-base-100 rounded-lg w-full h-full top-0 bg-opacity-30 flex items-center justify-center' />
                 )}
                 <Image
                   alt={item.title}
@@ -109,7 +120,7 @@ function EditItemForm({ item, onEdit }) {
                 />
                 <div
                   type='file'
-                  className='absolute hidden text-center bg-white rounded-lg w-full h-full top-0 group-hover:flex cursor-pointer bg-opacity-40 items-center justify-center'
+                  className='absolute hidden text-center bg-base-100 rounded-lg w-full h-full top-0 group-hover:flex cursor-pointer bg-opacity-40 items-center justify-center'
                 >
                   <input
                     type='file'
@@ -131,54 +142,66 @@ function EditItemForm({ item, onEdit }) {
           <Input
             name='title'
             type='text'
-            placeholder='Add a title'
-            label='Title'
+            placeholder={t("addItem:titlePlaceholder")}
+            label={t("addItem:titleLabel")}
             handleChange={formik.handleChange}
             value={formik.values.title}
             handleBlur={formik.handleBlur}
             error={formik.errors.title}
             touched={formik.touched.title}
+            sm
           />
-          <Input
+          <TextAreaInput
             name='description'
             type='text'
-            placeholder='Describe your items...'
-            label='Description'
+            placeholder={t("addItem:descriptionPlaceHolder")}
+            label={t("addItem:descriptionLabel")}
             handleChange={formik.handleChange}
             value={formik.values.description}
             handleBlur={formik.handleBlur}
             error={formik.errors.description}
             touched={formik.touched.description}
+            textLength={formik.values.description.length}
+            maxLength={250}
           />
           <SelectInput
             name='category'
-            data={states}
-            label='Category'
+            data={categories}
+            label={t("addItem:categoryLabel")}
             handleChange={formik.handleChange}
             value={formik.values.category}
             touched={formik.touched.category}
             error={formik.errors.category}
+            sm
           />
           <SelectInput
             name='location'
             data={states}
-            label='Location'
+            label={t("addItem:locationLabel")}
             handleChange={formik.handleChange}
             value={formik.values.location}
             touched={formik.touched.location}
             error={formik.errors.location}
+            sm
           />
-          <div className='modal-action'>
-            <button type='submit' className='btn btn-primary'>
-              {t("dashboard:userUpadteForm:submit")}
+          <div
+            className={`${i18n.language == "ar" ? "gap-2" : ""} modal-action`}
+          >
+            <button
+              type='submit'
+              className='btn rounded-xl btn-sm btn-primary bg-opacity-30 normal-case tracking-wider btn-active'
+            >
+              {t("common:buttons:submit")}
             </button>
             <div method='dialog'>
               <button
                 type='button'
-                className='btn'
-                onClick={() => document.getElementById(item.id).close()}
+                className='btn rounded-xl btn-outline btn-sm normal-case tracking-wider font-light'
+                onClick={() =>
+                  document.getElementById(`my_modal_${item.id}`).close()
+                }
               >
-                {t("dashboard:userUpadteForm:cancel")}
+                {t("common:buttons:cancel")}
               </button>
             </div>
           </div>

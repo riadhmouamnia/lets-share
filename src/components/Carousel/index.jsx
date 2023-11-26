@@ -1,11 +1,8 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-import getAllCategories from "@/lib/getAllCategories";
-
 import CarouselItem from "./CarouselItem";
 
-export default function Carousel({ t, queryParams }) {
-  const items = getAllCategories(t);
+export default function Carousel({ t, items, queryParams }) {
   const nextItem = () => {
     let lists = document.querySelectorAll(".item");
     document.getElementById("slide").appendChild(lists[0]);
@@ -28,15 +25,15 @@ export default function Carousel({ t, queryParams }) {
           />
         ))}
       </div>
-      <div className='absolute px-8 z-50 lg:bottom-12 bottom-[10%] justify-between w-full flex gap-4 lg:justify-center'>
+      <div className='absolute px-2 z-50 lg:translate-x-20 lg:top-[88%] top-[82%] justify-between w-full flex gap-4 lg:justify-center'>
         <button
-          className='btn btn-circle bg-white hover:bg-slate-50 border-none items-center justify-center lg:hidden lg:group-hover:flex'
+          className='btn btn-circle bg-white text-black bg-opacity-50 hover:bg-slate-50 border-none items-center justify-center lg:hidden lg:group-hover:flex'
           onClick={prevItem}
         >
           <MdChevronLeft size={40} />
         </button>
         <button
-          className='btn btn-circle bg-white hover:bg-slate-50 border-none items-center justify-center lg:hidden lg:group-hover:flex'
+          className='btn btn-circle bg-white text-black bg-opacity-50 hover:bg-slate-50 border-none items-center justify-center lg:hidden lg:group-hover:flex'
           onClick={nextItem}
         >
           <MdChevronRight size={40} />

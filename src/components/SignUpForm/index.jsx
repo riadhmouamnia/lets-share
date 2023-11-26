@@ -1,17 +1,14 @@
 import { useFormik } from "formik";
-import { AiFillFacebook } from "react-icons/ai";
-import { FaGithubSquare } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import * as Yup from "yup";
 
 import { useAuth } from "@/context/AuthProvider";
 
 import Input from "../Input";
 import SelectInput from "../SelectInput";
+import SignupMethods from "../SignupMethods";
 
 function SignUpForm({ states, t }) {
-  const { signUp, signInWithFacebook, signInWithGoogle, signInWithGithub } =
-    useAuth();
+  const { signUp } = useAuth();
   const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   const formik = useFormik({
     initialValues: {
@@ -20,7 +17,7 @@ function SignUpForm({ states, t }) {
       password: "",
       confirmPassword: "",
       phone: "",
-      location: states[0].name,
+      location: "",
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -50,11 +47,9 @@ function SignUpForm({ states, t }) {
   });
 
   return (
-    <section className='md:max-w-lg mx-auto'>
-      <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
-        <h1 className='text-3xl font-black text-center'>
-          {t("signUp:signUp")}
-        </h1>
+    <section className='flex gap-2 flex-col w-full mx-auto'>
+      <h1 className='text-3xl font-bold'>{t("signUp:signUp")}</h1>
+      <form onSubmit={formik.handleSubmit} className='flex gap-2 flex-col'>
         <Input
           name='name'
           type='text'
@@ -122,26 +117,16 @@ function SignUpForm({ states, t }) {
         />
         <button
           type='submit'
-          className='btn btn-primary w-full md:w-1/2 md:self-center text-white mt-2'
+          className='btn my-6 btn-secondary text-black bg-opacity-40 w-full normal-case text-xl font-normal self-center rounded-xl'
         >
-          {t("signUp:signUp")}
+          {t("signUp:signUpButton")}
         </button>
-        <p className='text-center'>{t("signUp:signUpMethod")}</p>
-        <div className='flex gap-3 justify-center items-center text-3xl text-primary'>
-          <button
-            className='btn btn-square btn-sm'
-            onClick={signInWithFacebook}
-          >
-            <AiFillFacebook className='text-3xl text-blue-600' />
-          </button>
-          <button onClick={signInWithGoogle} className='btn btn-square btn-sm'>
-            <FcGoogle className='text-3xl text-primary' />
-          </button>
-          <button onClick={signInWithGithub} className='btn btn-square btn-sm'>
-            <FaGithubSquare className='text-3xl text-gray-700' />
-          </button>
-        </div>
       </form>
+      <div className='lg:hidden'>
+        <span className='divider'>{t("signUp:divider")}</span>
+        <p className='text-center my-4'>{t("signUp:signUpMethod")}</p>
+        <SignupMethods />
+      </div>
     </section>
   );
 }

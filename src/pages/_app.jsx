@@ -1,8 +1,9 @@
 import { appWithTranslation } from "next-i18next";
+import { ThemeProvider } from "next-themes";
 import { ToastContainer } from "react-toastify";
 
-import "@/styles/globals.css";
-import "@/styles/carousel.css";
+import "../styles/globals.css";
+import "../styles/carousel.css";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,12 +14,14 @@ import nextI18NextConfig from "../../next-i18next.config";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthContextProvider>
-      <Layout>
-        <ToastContainer />
-        <Component {...pageProps} />
-      </Layout>
-    </AuthContextProvider>
+    <ThemeProvider defaultTheme='system'>
+      <AuthContextProvider>
+        <Layout>
+          <ToastContainer />
+          <Component {...pageProps} />
+        </Layout>
+      </AuthContextProvider>
+    </ThemeProvider>
   );
 }
 

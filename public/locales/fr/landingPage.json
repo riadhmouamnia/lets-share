@@ -1,21 +1,25 @@
 {
   "hero": {
-    "title": "Partageons ensemble.",
-    "description": "Bienvenue chez Unify! Là où tout ce dont vous pourriez ne pas avoir besoin est la nécessité de quelqu'un d'autre. Des vêtements aux meubles, nous sommes là pour faire le lien entre vous et les personnes dans le besoin. Ensemble, nous pouvons faire une différence significative dans la vie de ceux qui ont besoin d'un coup de main. Rejoignez-nous pour répandre la chaleur, la gentillesse et l'espoir. Créons une communauté unie par l'esprit du don et de la compassion, un article à la fois."
+    "title": "Le pouvoir du don ",
+    "titleHighlight": "collectif.",
+    "description": "le véritable don est un reflet de votre humanité",
+    "stat1": "Repas distribués durant le Ramadhan",
+    "stat2": "Orphelins pris en charge",
+    "stat3": "Recensés dans le programme d'aide aux réfugiés"
   },
   "causes": {
     "title": "Causes",
-    "warmth": {
-      "title": "Chaleur",
-      "description": "Nous croyons que les réfugiés et les sans-abri méritent d'avoir accès à des vêtements chauds et propres en hiver et à des vêtements confortables en été."
+    "education": {
+      "title": "Education",
+      "description": "Nous nous engageons à cultiver la force intellectuelle à travers l’éducation.Nous défendons l'accès égal à la connaissance, tout en promouvant un avenir plus radieux pour tous."
     },
-    "comfort": {
-      "title": "Confort",
-      "description": "Nous cherchons à aider les personnes dans le besoin à trouver des meubles et des appareils abordables car tout le monde mérite d'avoir un chez-soi, pas seulement une maison."
+    "solidarity": {
+      "title": "Solidarité",
+      "description": "Nous favorisons un sentiment de communauté en apportant un soutien aux personnes défavorisées. Nous promouvons la solidarité pour une société unie"
     },
     "health": {
       "title": "Santé",
-      "description": "Unify croit que chaque être humain mérite un repas chaud chaque fois que c'est difficile."
+      "description": "Nous croyons en la promotion d'une société en bonne santé. Notre objectif est de favoriser l'émergence d'une communauté plus saine."
     }
   },
   "statistics": {

@@ -6,6 +6,7 @@ function SelectInput({
   touched,
   error,
   value,
+  sm,
 }) {
   return (
     <div>
@@ -21,7 +22,9 @@ function SelectInput({
       </div>
       <select
         id={name}
-        className='select select-primary bg-white w-full'
+        className={`select ${sm ? "select-sm" : ""}  ${
+          touched && error ? "select-error" : "select-primary"
+        } bg-base-200 w-full border-opacity-25 rounded-3xl`}
         onChange={handleChange}
         defaultValue={value}
       >

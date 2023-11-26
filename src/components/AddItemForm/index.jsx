@@ -47,9 +47,9 @@ function AddItemForm({ t, initialLocale, categories, states }) {
       category: Yup.string().required(t("addItem:categoryRequired")),
       location: Yup.string().required(t("addItem:locationRequired")),
       description: Yup.string()
-        .max(150, "description too long")
+        .max(250, "description too long")
         .required(t("addItem:descriptionRequired")),
-      listingType: Yup.string().required(t("addItem:itemTagRequired")),
+      listingType: Yup.string().required(t("addItem:listingTypeRequired")),
     }),
     onSubmit: async (values, { resetForm }) => {
       const id = uuidv4();
@@ -74,6 +74,7 @@ function AddItemForm({ t, initialLocale, categories, states }) {
         const imagesUrl = await uploadImages(imageRef, images);
         const valuesWithImages = {
           ...values,
+          title: values.title.toLowerCase(),
           id,
           uid: user.uid,
           images: imagesUrl,
@@ -84,7 +85,7 @@ function AddItemForm({ t, initialLocale, categories, states }) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
         });
-        router.push("/products");
+        router.push("/items");
       } catch (err) {
         alert(err.message);
       } finally {
@@ -97,7 +98,7 @@ function AddItemForm({ t, initialLocale, categories, states }) {
   return (
     <ProtectedLayout>
       <section className='relative md:max-w-lg mx-auto'>
-        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-1'>
           <h1 className='text-3xl font-black text-center'>
             {t("addItem:addItem")}
           </h1>
@@ -153,7 +154,7 @@ function AddItemForm({ t, initialLocale, categories, states }) {
             error={formik.errors.description}
             touched={formik.touched.description}
             textLength={formik.values.description.length}
-            maxLength={150}
+            maxLength={250}
           />
           <div className='label'>
             <span htmlFor='file-upload' className='label-text'>
@@ -168,14 +169,14 @@ function AddItemForm({ t, initialLocale, categories, states }) {
             onChange={(e) => {
               setImages(Array.from(e.target.files));
             }}
-            className='file-input bg-white'
+            className='file-input bg-base-200'
             id='file-upload'
             multiple
           />
-          <div className='form-control'>
+          <div className='form-control my-2'>
             <div className='label'>
               <span className='label-text'>
-                <span className='text-error'>*</span> {t("addItem:itemTag")}
+                <span className='text-error'>*</span> {t("addItem:listingType")}
               </span>
               <span
                 className={`label-text-alt ${
@@ -189,7 +190,7 @@ function AddItemForm({ t, initialLocale, categories, states }) {
                   : ""}
               </span>
             </div>
-            <div className='flex flex-col md:flex-row gap-2 md:justify-between md:items-center'>
+            <div className='flex flex-col md:flex-row gap-2 md:justify-between md:items-center my-2'>
               {listingTypes.map((listingKey, i) => (
                 <ListingTypeButton
                   key={i}
@@ -201,15 +202,18 @@ function AddItemForm({ t, initialLocale, categories, states }) {
               ))}
             </div>
           </div>
-          <div className='flex flex-col md:flex-row gap-2 justify-center mt-2'>
+          <div className='flex flex-col md:flex-row gap-2 justify-center my-4'>
             <button
               type='submit'
-              className='btn btn-primary flex-1 md:self-center text-white'
+              className='btn btn-md rounded-xl btn-secondary bg-opacity-50 text-black flex-1 md:self-center'
             >
               {t("addItem:addItem")}
             </button>
-            <Link href='/products' className='btn flex-1 md:self-center'>
-              {t("addItem:cancel")}
+            <Link
+              href='/items'
+              className='btn btn-md rounded-xl btn-ghost border-gray-200 flex-1 md:self-center'
+            >
+              {t("common:buttons:cancel")}
             </Link>
           </div>
         </form>

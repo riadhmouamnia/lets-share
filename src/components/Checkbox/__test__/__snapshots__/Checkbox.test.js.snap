@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    className="flex items-center gap-2"
+    className="flex items-center gap-2 pl-3"
   >
     <input
       className="checkbox checkbox-primary "
@@ -13,15 +13,5 @@ exports[`renders correctly 1`] = `
       className="label label-text"
     />
   </div>
-  <label
-    className="label"
-  >
-    <span
-      className="label-text-alt"
-    />
-    <span
-      className="label-text-alt "
-    />
-  </label>
 </div>
 `;

@@ -75,8 +75,8 @@ export function AuthContextProvider({ children }) {
         role: "user",
         date: serverTimestamp(),
       });
-      setUser(user);
-      toast.success(`Hi ${userInfo.name}, Thank you for joing in us! 😍`, {
+      setUser(user.user);
+      toast.success(`Hi ${userInfo.name}, Thank you for joining us! 😍`, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500,
       });
@@ -124,7 +124,7 @@ export function AuthContextProvider({ children }) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
         });
-        setUser(user);
+        setUser(user.user);
         // redirect user to their profile page
         router.push({
           pathname: "/dashboard",
@@ -144,7 +144,7 @@ export function AuthContextProvider({ children }) {
         });
         setUser(user);
         toast.success(
-          `Hi ${user.user.displayName}, Thank you for joing in us! 😍`,
+          `Hi ${user.user.displayName}, Thank you for joining us! 😍`,
           {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
@@ -188,7 +188,7 @@ export function AuthContextProvider({ children }) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
         });
-        setUser(user);
+        setUser(user.user);
         // redirect user to their profile page
         router.push({
           pathname: "/dashboard",
@@ -208,7 +208,7 @@ export function AuthContextProvider({ children }) {
         });
         setUser(user);
         toast.success(
-          `Hi ${user.user.displayName}, Thank you for joing in us! 😍`,
+          `Hi ${user.user.displayName}, Thank you for joining us! 😍`,
           {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
@@ -252,7 +252,7 @@ export function AuthContextProvider({ children }) {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
         });
-        setUser(user);
+        setUser(user.user);
 
         // redirect user to their profile page
         router.push({
@@ -273,7 +273,7 @@ export function AuthContextProvider({ children }) {
         });
         setUser(user);
         toast.success(
-          `Hi ${user.user.displayName}, Thank you for joing in us! 😍`,
+          `Hi ${user.user.displayName}, Thank you for joining us! 😍`,
           {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
@@ -303,7 +303,7 @@ export function AuthContextProvider({ children }) {
     setError(undefined);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      setUser(user);
+      setUser(user.user);
       toast.success(
         `Hi ${user.displayName ?? user.user.email}, Welcome back! 😍`,
         {
@@ -380,6 +380,7 @@ export function AuthContextProvider({ children }) {
       value={{
         error,
         user,
+        setUser,
         signUp,
         signIn,
         logOut,

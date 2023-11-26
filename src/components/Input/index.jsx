@@ -8,10 +8,11 @@ function Input({
   handleBlur,
   touched,
   error,
+  sm,
 }) {
   return (
     <div>
-      <div className='label'>
+      <div className='label ml-2'>
         <label htmlFor={name} className='label-text'>
           {label}
         </label>
@@ -22,7 +23,9 @@ function Input({
         </label>
       </div>
       <input
-        className='input bg-white input-primary w-full'
+        className={`input ${sm ? "input-sm" : ""} bg-base-200 ${
+          touched && error ? "input-error" : "input-primary"
+        } w-full rounded-full border-opacity-25`}
         id={name}
         type={type}
         name={name}
