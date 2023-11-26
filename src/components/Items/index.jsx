@@ -13,7 +13,15 @@ import Pagination from "./Filters/Pagination";
 import ItemCard from "../ItemCard";
 import SearchBar from "../SearchBar";
 
-function Items({ t, queryParams, totalItems, items, page, totalPages }) {
+function Items({
+  t,
+  queryParams,
+  totalItems,
+  items,
+  page,
+  totalPages,
+  pageSize,
+}) {
   const router = useRouter();
   const [searchText, setSearchText] = useState(queryParams.search || "");
 
@@ -97,6 +105,8 @@ function Items({ t, queryParams, totalItems, items, page, totalPages }) {
             page={page}
             queryParams={queryParams}
             totalPages={totalPages}
+            pageSize={pageSize}
+            totalItems={totalItems}
           />
         </div>
       </div>

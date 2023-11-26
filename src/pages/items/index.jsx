@@ -17,7 +17,15 @@ const DynamicItems = dynamic(() => import("@/components/Items"), {
   loading: () => <ItemsPlaceholder />,
 });
 
-function ItemsPage({ t, items, queryParams, totalItems, totalPages, page }) {
+function ItemsPage({
+  t,
+  items,
+  queryParams,
+  totalItems,
+  totalPages,
+  page,
+  pageSize,
+}) {
   const categories = getAllCategories(t);
   return (
     <main>
@@ -34,6 +42,7 @@ function ItemsPage({ t, items, queryParams, totalItems, totalPages, page }) {
         page={page}
         totalItems={totalItems}
         totalPages={totalPages}
+        pageSize={pageSize}
       />
     </main>
   );
